@@ -1,0 +1,56 @@
+import java.util.*;
+import java.io.*;
+
+public class breedflip {
+    public static void main(String[] args) throws Exception {
+        Scanner in = new Scanner(new File("breedflip.in"));
+        PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("breedflip.out")));
+
+        int n = in.nextInt();
+        char[] a = in.next().toCharArray();
+        char[] b = in.next().toCharArray();
+        int[] ar = new int[n];
+        int[] br = new int[n];
+
+        for (int i = 0; i < n; i++) {
+            ar[i] = Character.getNumericValue(a[i]);
+            br[i] = Character.getNumericValue(b[i]);
+
+        }
+
+        for (int i = 0; i < n; i++) {
+            if (ar[i] == br[i]) {
+                br[i] = 0;
+                ar[i] = 0;
+
+            }
+        }
+
+        for (int i = 0; i < n - 1; i++) {
+            if (ar[i] != 0 && ar[i+1] !=0) {
+                if (br[i] == br[i + 1]) {
+                    br[i] = 0;
+                }
+                if (ar[i] != ar[i + 1] && br[i] != br[i + 1]) {
+                    br[i] = 0;
+                }
+                
+            }
+        }
+
+        int cnt = 0;
+        for (int i = 0; i < n; i++) {
+            if (br[i] != 0) {
+                cnt++;
+            }
+        }
+
+        // System.out.println(Arrays.toString(ar));
+        // System.out.println(Arrays.toString(br));
+        // System.out.println(cnt);
+
+        out.println(cnt);
+        out.close();
+
+    }
+}
