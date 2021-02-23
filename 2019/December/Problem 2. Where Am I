@@ -1,0 +1,45 @@
+import java.util.*;
+import java.io.*;
+
+public class whereami {
+    public static void main(String[] args) throws Exception {
+        Scanner in = new Scanner(new File("whereami.in"));
+        PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("whereami.out")));
+
+   
+		int n = in.nextInt();
+		String s = in.next();
+		int cnt = 0;
+		
+        for(int i =1; i < n+1; i++){
+            boolean w = true; 
+            HashSet<String> set = new HashSet<>();
+            for(int j =0; j< n-i+1; j++){
+                String pt = s.substring(j, i+j); 
+                if(set.contains(pt)){
+                    w = false;
+                    break;
+                }
+
+                set.add(pt);
+                // System.out.println(pt);
+                
+            }
+            if(w){
+                cnt = i;
+                break;
+            }
+        }
+
+        // System.out.println(cnt);
+		
+		out.println(cnt);
+		out.close();		
+		
+    }
+
+}
+
+
+
+
